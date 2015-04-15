@@ -20,6 +20,7 @@
           catch exception
             reject exception
 
-    debug = (require 'debug') 'call_server'
+    pkg = require './package.json'
+    debug = (require 'debug') "#{pkg.name}:call_server"
     UsefulWindRouter = require './router'
     FS = require 'esl'
