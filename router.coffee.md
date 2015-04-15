@@ -62,7 +62,7 @@ Add the middleware for in-call use.
           do (middleware) =>
             it = it
               .then ->
-                middleware.include?.call ctx, ctx
+                middleware.include.call ctx, ctx
               .catch (error) =>
                 debug "#{module.name} #{pkg.name} #{pkg.version}: middleware failure", error.toString()
                 null
