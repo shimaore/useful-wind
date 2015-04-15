@@ -20,7 +20,7 @@ At this point it should either be a function or an object.
 
 At this point it should only be an object; the object must have an `include` function.
 
-        assert middleware.include?, 'Missing middleware include'
+        assert middleware.include?, 'Missing middleware include', middleware
         assert (typeof middleware.include is 'function'), 'Middleware include must be a function'
 
 Add the middleware for in-call use.
