@@ -1,0 +1,25 @@
+    module.name = 'UsefulWindCallServer'
+    module.exports = class UsefulWindCallServer
+      constructor: (@cfg) ->
+        router = @cfg.router ? new UsefulWindRouter @cfg
+        if @cfg.use?
+          router.use module for module in @cfg.use
+        @server = FS.server ->
+          router.route this
+        @router = router
+
+      listen: (port) ->
+        @server.listen port
+        debug "#{module.name} #{pkg.name} #{pkg.version}: starting on port #{@port}"
+
+      stop: ->
+        new Promise (resolve,reject) =>
+          try
+            @server.close resolve
+            delete @server
+          catch exception
+            reject exception
+
+    debug = (require 'debug') 'call_server'
+    UsefulWindRouter = require './router'
+    FS = require 'esl'

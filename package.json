@@ -1,0 +1,26 @@
+{
+  "name": "useful-wind",
+  "version": "1.0.0",
+  "description": "A Promise-friendly, middleware-based framework for FreeSwitch call-handling",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prepublish": "coffee -c *.coffee.md",
+    "postpublish": "rm *.js",
+    "test": "npm install && mocha"
+  },
+  "author": "Stéphane Alnet <stephane@shimaore.net> (http://stephane.shimaore.net/)",
+  "license": "Unlicense (http://unlicense.org/)",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "chai-as-promised": "^4.3.0",
+    "coffee-script": "^1.9.1",
+    "mocha": "^2.2.4"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.24",
+    "debug": "^2.1.3"
+  }
+}
