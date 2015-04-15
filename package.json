@@ -9,7 +9,8 @@
   "scripts": {
     "prepublish": "coffee -c *.coffee.md",
     "postpublish": "rm *.js",
-    "test": "npm install && mocha"
+    "pretest": "npm install",
+    "test": "mocha"
   },
   "author": "Stéphane Alnet <stephane@shimaore.net> (http://stephane.shimaore.net/)",
   "license": "Unlicense (http://unlicense.org/)",
