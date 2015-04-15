@@ -10,12 +10,25 @@ The router is initialized with a single parameter which is made available inside
 
 Each middleware is called once for each FreeSwitch call; middleware functions are called inside a Promise chain, using a specific context which is described in the next section.
 
-`router.session`
+`router.session` (object)
 ----------------
 
 The router's `session` object is used to initialize the middlewares' `session` object.
 
     router.session.db = new PouchDB cfg.db_name, cfg.db_options
+
+`router.use` (function or object)
+------------
+
+Appends the middleware to the list of middleware used by this router.
+
+The argument might be a function, or an object with the field `include` and (optionally, for debugging purposes) `name`.
+
+debug
+-----
+
+This module uses `debug` and the prefix `useful-wind`. Use `DEBUG='useful-wind:*'` or a similar pattern to debug the module (including errors in middleware code).
+
 
 Middleware context
 ==================

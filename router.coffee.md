@@ -12,12 +12,6 @@ router.use
 Middleware might be one of two things:
 - a function, in which case it is a `include`-only middleware
 - an object, in which case it must have an `include` entity as the middleware
-- a string, in which case `require` is first called and the resulting object or function is used
-
-First do `require` if the middleware is a string.
-
-        if typeof middleware is 'string'
-          middleware = require middleware
 
 At this point it should either be a function or an object.
 
