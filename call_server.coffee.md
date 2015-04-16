@@ -3,7 +3,9 @@
       constructor: (@cfg) ->
         router = @cfg.router ? new UsefulWindRouter @cfg
         if @cfg.use?
-          router.use module for module in @cfg.use
+          for m in @cfg.use
+            do (m) ->
+              router.use m
         @server = FS.server ->
           router.route this
         @router = router

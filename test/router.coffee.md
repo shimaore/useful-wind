@@ -20,7 +20,7 @@
 
       it 'should accept modules as middleware', ->
         router = new Router()
-        router.use './test/module'
+        router.use require './module'
         router.route data:{}
         .then ->
           router.session.should.have.property 'foo', 'bee'
