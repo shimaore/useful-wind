@@ -107,5 +107,5 @@ Send a command to FreeSwitch.
 `include` (function)
 ---------
 
-Requires a module, which should export an `include` function, which is called the same way a middleware is called.
+Given a module, which should export an `include` function, calls that function the same way a middleware is called.
 This allows you to compose modules.

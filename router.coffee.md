@@ -44,8 +44,13 @@ Add the middleware for in-call use.
           session: {}
           action: (name,args) ->
             call.command name, args
-          include: (name) ->
-            (require name)?.include?.call ctx, ctx
+          include: (mod) ->
+            Promise.resolve()
+            .then ->
+              mod.include.call ctx, ctx
+            .catch (error) ->
+              debug "Module #{mod.name ? '(no name)'} failed", error.toString()
+              throw error
         }
         for own k,v of @session
           ctx.session[k] = v
