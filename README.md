@@ -103,9 +103,3 @@ Send a command to FreeSwitch.
       @action 'set', 't38_passthru=true'
       .then ->
         @action 'bridge', 'sofia/profile/fax@192.168.2.1'
-
-`include` (function)
----------
-
-Given a module, which should export an `include` function, calls that function the same way a middleware is called.
-This allows you to compose modules.
