@@ -12,7 +12,7 @@
 
       listen: (port) ->
         @router.init()
-        .then ->
+        .then =>
           @server.listen port
           debug "#{module.name} #{pkg.name} #{pkg.version}: starting on port #{port}"
 
