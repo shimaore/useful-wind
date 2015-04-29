@@ -1,6 +1,6 @@
 {
   "name": "useful-wind",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A Promise-friendly, middleware-based framework for FreeSwitch call-handling",
   "main": "index.js",
   "directories": {
