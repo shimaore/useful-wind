@@ -24,6 +24,13 @@ Appends the middleware to the list of middleware used by this router.
 
 The argument might be a function, or an object with the field `include` and (optionally, for debugging purposes) `name`.
 
+`router.init`
+------------
+
+Call each middleware's `init` function with a context containing the `cfg` object, inside a Promise chain which will fail if any `init` function fails.
+
+Obviously this is only possible if the argument(s) to `route.use` were objects.
+
 debug
 -----
 
