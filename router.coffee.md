@@ -1,4 +1,3 @@
-    module.name = 'UsefulWindRouter'
     module.exports = class UsefulWindRouter
       constructor: (@cfg = {}) ->
         @middlewares = []
@@ -46,15 +45,15 @@ Init
               .then ->
                 middleware.init.call ctx, ctx
               .catch (error) =>
-                debug "#{module.name} #{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` init failed", error.toString()
+                debug "#{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` init failed", error.toString()
                 throw error
 
         it
         .catch (error) ->
-          debug "#{module.name} #{pkg.name} #{pkg.version}: init failure", error.toString()
+          debug "#{pkg.name} #{pkg.version}: init failure", error.toString()
           throw error
         .then ->
-          debug "#{module.name} #{pkg.name} #{pkg.version}: init completed."
+          debug "#{pkg.name} #{pkg.version}: init completed."
           ctx
 
       route: (call) ->
@@ -86,15 +85,15 @@ Init
               .then ->
                 middleware.include.call ctx, ctx
               .catch (error) =>
-                debug "#{module.name} #{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` failed", error.toString()
+                debug "#{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` failed", error.toString()
                 null
 
         it
         .catch (error) ->
-          debug "#{module.name} #{pkg.name} #{pkg.version}: route failure", error.toString()
+          debug "#{pkg.name} #{pkg.version}: route failure", error.toString()
           null
         .then ->
-          debug "#{module.name} #{pkg.name} #{pkg.version}: completed."
+          debug "#{pkg.name} #{pkg.version}: completed."
           ctx
 
 Toolbox

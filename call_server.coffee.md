@@ -1,4 +1,3 @@
-    module.name = 'UsefulWindCallServer'
     module.exports = class UsefulWindCallServer
       constructor: (@cfg) ->
         router = @cfg.router ? new UsefulWindRouter @cfg
@@ -14,7 +13,7 @@
         @router.init()
         .then =>
           @server.listen port
-          debug "#{module.name} #{pkg.name} #{pkg.version}: starting on port #{port}"
+          debug "#{pkg.name} #{pkg.version}: starting on port #{port}"
 
       stop: ->
         new Promise (resolve,reject) =>
