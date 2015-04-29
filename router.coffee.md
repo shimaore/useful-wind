@@ -27,6 +27,31 @@ Add the middleware for in-call use.
 
         @middlewares.push middleware
 
+      init: (options) ->
+        ctx = {
+          cfg: @cfg
+          options
+        }
+        it = Promise.resolve()
+        it = it.bind ctx
+        for middleware in @middlewares
+          do (middleware) =>
+            return unless middleware.init?
+            it = it
+              .then ->
+                middleware.init.call ctx, ctx
+              .catch (error) =>
+                debug "#{module.name} #{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` init failed", error.toString()
+                null
+
+        it
+        .catch (error) ->
+          debug "#{module.name} #{pkg.name} #{pkg.version}: init failure", error.toString()
+          null
+        .then ->
+          debug "#{module.name} #{pkg.name} #{pkg.version}: init completed."
+          ctx
+
       route: (call) ->
         source = call.data['Channel-Caller-ID-Number']
         destination = call.data['Channel-Destination-Number']
