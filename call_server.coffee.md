@@ -12,7 +12,7 @@
 
       listen: (port) ->
         @server.listen port
-        debug "#{module.name} #{pkg.name} #{pkg.version}: starting on port #{@port}"
+        debug "#{module.name} #{pkg.name} #{pkg.version}: starting on port #{port}"
 
       stop: ->
         new Promise (resolve,reject) =>
