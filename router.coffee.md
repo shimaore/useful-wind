@@ -27,6 +27,11 @@ Add the middleware for in-call use.
 
         @middlewares.push middleware
 
+Init
+----
+
+`init` will fail if any middleware's `init` fails. This allows us to catch misconfigurations early and not start the services if not ready.
+
       init: (options) ->
         ctx = {
           cfg: @cfg
@@ -42,12 +47,12 @@ Add the middleware for in-call use.
                 middleware.init.call ctx, ctx
               .catch (error) =>
                 debug "#{module.name} #{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` init failed", error.toString()
-                null
+                throw error
 
         it
         .catch (error) ->
           debug "#{module.name} #{pkg.name} #{pkg.version}: init failure", error.toString()
-          null
+          throw error
         .then ->
           debug "#{module.name} #{pkg.name} #{pkg.version}: init completed."
           ctx
