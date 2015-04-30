@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "bluebird": "^2.9.24",
-    "debug": "^2.1.3"
+    "debug": "^2.1.3",
+    "esl": "^3.0.1"
   }
 }
