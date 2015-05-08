@@ -30,36 +30,6 @@ Add the middleware for in-call use.
 
         @middlewares.push middleware
 
-Init
-----
-
-`init` will fail if any middleware's `init` fails. This allows us to catch misconfigurations early and not start the services if not ready.
-
-      init: (options) ->
-        ctx = {
-          cfg: @cfg
-          options
-        }
-        it = Promise.resolve()
-        it = it.bind ctx
-        for middleware in @middlewares
-          do (middleware) =>
-            return unless middleware.init?
-            it = it
-              .then ->
-                middleware.init.call ctx, ctx
-              .catch (error) =>
-                debug "#{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` init failed", error.toString()
-                throw error
-
-        it
-        .catch (error) ->
-          debug "#{pkg.name} #{pkg.version}: init failure", error.toString()
-          throw error
-        .then ->
-          debug "#{pkg.name} #{pkg.version}: init completed."
-          ctx
-
       route: (call) ->
         source = call.data['Channel-Caller-ID-Number']
         destination = call.data['Channel-Destination-Number']
