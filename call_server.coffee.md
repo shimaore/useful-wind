@@ -1,17 +1,18 @@
     module.exports = class UsefulWindCallServer
       constructor: (@cfg) ->
-        router = @cfg.router ? new UsefulWindRouter @cfg
-        if cfg.use?
-          for m in @cfg.use
-            do (m) ->
-              router.use m
-        @server = FS.server ->
-          router.route this
-        @router = router
+        assert @cfg.use?, 'Missing cfg.use'
+        @router = @cfg.router ? new UsefulWindRouter @cfg
+        for m in @cfg.use
+          @router.use m
 
       listen: (port) ->
-        @server.listen port
-        debug "#{pkg.name} #{pkg.version}: starting on port #{port}"
+        router = @router
+        serialize @cfg, 'init'
+        .then =>
+          @server = FS.server ->
+            router.route this
+          @server.listen port
+          debug "#{pkg.name} #{pkg.version}: starting on port #{port}"
 
       stop: ->
         new Promise (resolve,reject) =>
@@ -26,3 +27,4 @@
     UsefulWindRouter = require './router'
     FS = require 'esl'
     assert = require 'assert'
+    serialize = require './serialize'

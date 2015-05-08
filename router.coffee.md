@@ -19,16 +19,15 @@ At this point it should either be a function or an object.
 
 At this point it should only be an object; the object must have an `include` function.
 
-        unless middleware.include?
-          debug 'Missing middleware include', middleware
-          return
-        unless typeof middleware.include is 'function'
-          debug 'Middleware include must be a function', typeof middleware.include
-          return
+        middleware.name ?= '(no name)'
+
+        if typeof middleware.include is 'function'
 
 Add the middleware for in-call use.
 
-        @middlewares.push middleware
+          @middlewares.push middleware
+        else
+          debug "Middleware #{middleware.name}'s `include` must be a function", typeof middleware.include
 
       route: (call) ->
         source = call.data['Channel-Caller-ID-Number']
@@ -52,22 +51,21 @@ Add the middleware for in-call use.
           ctx.session[k] = v
 
         it = Promise.resolve()
-        it = it.bind ctx
         for middleware in @middlewares
           do (middleware) =>
             it = it
               .then ->
                 middleware.include.call ctx, ctx
               .catch (error) =>
-                debug "#{pkg.name} #{pkg.version}: middleware `#{middleware.name ? '(no name)'}` failed", error.toString()
+                debug "middleware `#{middleware.name}` failed", error.toString()
                 null
 
         it
         .catch (error) ->
-          debug "#{pkg.name} #{pkg.version}: route failure", error.toString()
+          debug "route failure", error.toString()
           null
         .then ->
-          debug "#{pkg.name} #{pkg.version}: completed."
+          debug "completed."
           ctx
 
 Toolbox
