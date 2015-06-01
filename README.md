@@ -1,11 +1,20 @@
 A Promise-friendly, middleware-based framework for FreeSwitch call-handling
 ===========================================================================
 
-    Router = require 'useful-wind'
+This framework is based on the [esl](https://github.com/shimaore/esl) Node.js Event Socket interface.
+
+It consists of two objects:
+- the call-server provides a high-level interface to a middle-ware based route; look in the [`example`](https://github.com/shimaore/useful-wind) folder for a complete, working example;
+- the router is the lower-level machinery; it works similarly to a Sinatra-based middleware router: each middleware is called in turn for a given call.
+
+Router
+======
+
+    Router = require 'useful-wind/router'
 
 The router is initialized with a single parameter which is made available inside the middleware as `this.cfg`.
 
-    cfg = {db_name:'foo'}
+    cfg = {my_db_name:'foo'}
     router = new Router cfg
 
 Each middleware is called once for each FreeSwitch call; middleware functions are called inside a Promise chain, using a specific context which is described in the next section.
@@ -22,14 +31,7 @@ The router's `session` object is used to initialize the middlewares' `session` o
 
 Appends the middleware to the list of middleware used by this router.
 
-The argument might be a function, or an object with the field `include` and (optionally, for debugging purposes) `name`.
-
-`router.init`
-------------
-
-Call each middleware's `init` function with a context containing the `cfg` object, inside a Promise chain which will fail if any `init` function fails.
-
-Obviously this is only possible if the argument(s) to `route.use` were objects.
+The argument might be a function, or an object with the fields `include` and (for debugging purposes) `name`.
 
 debug
 -----
@@ -54,8 +56,6 @@ A shortcut to `this.router.cfg`.
 
 A reference to the router object.
 
-`router.session` is used to initialize `session` at the start of each call, before any middleware is processed.
-
 `session`
 ---------
 
@@ -73,17 +73,21 @@ Middleware should store call-related data inside the `session` object:
           @session.db.get "number:#{destination}"
           .then (doc) ->
 
+`router.session` is used to initialize `session` at the start of each call, before any middleware is processed.
+
 `data`
 ------
 
 The data provided by FreeSwitch over the Event Socket.
+
+A shortcut for `this.call.data`.
 
 `source`
 --------
 
 The FreeSwitch Caller-ID-Number.
 
-Your application may modify `destination` if you'd like, but the value is not sent back to FreeSwitch. Use the FreeSwitch `set` or `export` commands to do that.
+Your application may modify `source` if you'd like, but the value is not sent back to FreeSwitch. Use the FreeSwitch `set` or `export` commands to do that.
 
 `destination`
 -------------
@@ -104,7 +108,7 @@ Return a reference to the incoming SIP header:
 `action` (function)
 --------
 
-Send a command to FreeSwitch.
+A shortcut for `call.command`. Send a command to FreeSwitch.
 
     router.use ->
       @action 'set', 't38_passthru=true'
