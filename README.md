@@ -4,7 +4,7 @@ A Promise-friendly, middleware-based framework for FreeSwitch call-handling
 This framework is based on the [esl](https://github.com/shimaore/esl) Node.js Event Socket interface.
 
 It consists of two objects:
-- the call-server provides a high-level interface to a middle-ware based route; look in the [`example`](https://github.com/shimaore/useful-wind) folder for a complete, working example;
+- the call-server provides a high-level interface to a middle-ware based route; look in the [`example`](https://github.com/shimaore/useful-wind/tree/master/example) folder for a complete, working example;
 - the router is the lower-level machinery; it works similarly to a Sinatra-based middleware router: each middleware is called in turn for a given call.
 
 Router
