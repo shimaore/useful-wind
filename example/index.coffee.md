@@ -4,6 +4,8 @@ The Docker image will run on your local interface (Docker's `--net host`) so you
 Usage
 -----
 
+Assuming you have recent Node.js and Docker.io installed:
+
 ```shell
 ./run.sh
 ```
