@@ -14,15 +14,15 @@
   "author": "Stéphane Alnet <stephane@shimaore.net> (http://stephane.shimaore.net/)",
   "license": "Unlicense (http://unlicense.org/)",
   "devDependencies": {
-    "chai": "^2.2.0",
-    "chai-as-promised": "^4.3.0",
-    "coffee-script": "^1.9.1",
-    "mocha": "^2.2.4"
+    "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
+    "coffee-script": "^1.9.3",
+    "mocha": "^2.2.5"
   },
   "dependencies": {
-    "bluebird": "^2.9.24",
-    "debug": "^2.1.3",
-    "esl": "^3.0.1"
+    "bluebird": "^2.9.30",
+    "debug": "^2.2.0",
+    "esl": "^3.0.2"
   },
   "repository": {
     "type": "git",
