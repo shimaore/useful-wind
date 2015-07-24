@@ -41,6 +41,8 @@ Add the middleware for in-call use.
           source
           destination
           req:
+            variable: (name) ->
+              call.data["variable_#{name}"]
             header: (name) ->
               call.data["variable_sip_h_#{name}"]
           session: {}

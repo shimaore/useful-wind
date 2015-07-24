@@ -96,13 +96,22 @@ The FreeSwitch Destination-Number.
 
 Your application may modify `destination` if you'd like, but the value is not sent back to FreeSwitch. Use the FreeSwitch `set` or `export` commands to do that.
 
+`req.variable` (function)
+------------
+
+Return a reference to a (read-only) FreeSwitch variable:
+
+    router.use ->
+      if @req.header('direction')
+        console.log 'direction is present'
+
 `req.header` (function)
 ------------
 
 Return a reference to the incoming SIP header:
 
     router.use ->
-      if req.header('p-charge-info')
+      if @req.header('p-charge-info')
         console.log 'P-Charge-Info is present'
 
 `action` (function)
