@@ -102,7 +102,7 @@ Your application may modify `destination` if you'd like, but the value is not se
 Return a reference to a (read-only) FreeSwitch variable:
 
     router.use ->
-      if @req.header('direction')
+      if @req.variable('direction')
         console.log 'direction is present'
 
 `req.header` (function)
