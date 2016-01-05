@@ -15,14 +15,14 @@
   "license": "Unlicense (http://unlicense.org/)",
   "devDependencies": {
     "chai": "^3.4.1",
-    "chai-as-promised": "^5.1.0",
+    "chai-as-promised": "^5.2.0",
     "coffee-script": "^1.10.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.4"
   },
   "dependencies": {
-    "bluebird": "^3.0.5",
+    "bluebird": "^3.1.1",
     "debug": "^2.2.0",
-    "esl": "^4.3.0"
+    "esl": "^5.1.0"
   },
   "repository": {
     "type": "git",
