@@ -28,4 +28,4 @@
     UsefulWindRouter = require './router'
     FS = require 'esl'
     assert = require 'assert'
-    serialize = require './serialize'
+    serialize = require 'useful-wind-serialize'
