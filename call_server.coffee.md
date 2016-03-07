@@ -1,5 +1,6 @@
     module.exports = class UsefulWindCallServer
       constructor: (@cfg) ->
+        debug 'constructor cfg =', @cfg
         assert @cfg.use?, 'Missing cfg.use'
         @router = @cfg.router ? new UsefulWindRouter @cfg
         for m in @cfg.use

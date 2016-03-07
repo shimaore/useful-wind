@@ -1,5 +1,6 @@
     module.exports = class UsefulWindRouter
       constructor: (@cfg = {}) ->
+        debug 'constructor cfg =', @cfg
         @middlewares = []
         @session = {}
 
