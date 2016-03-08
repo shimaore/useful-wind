@@ -20,9 +20,9 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
-    "bluebird": "^3.3.3",
+    "bluebird": "^3.3.4",
     "debug": "^2.2.0",
-    "esl": "^5.2.0",
+    "esl": "^5.2.1",
     "useful-wind-serialize": "^1.0.2"
   },
   "repository": {
