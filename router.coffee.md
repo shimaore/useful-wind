@@ -34,6 +34,10 @@ Add the middleware for in-call use.
         source = call.data['Channel-Caller-ID-Number']
         destination = call.data['Channel-Destination-Number']
 
+The above works fine if we are executing inside the XML dialplan. However when executing from within an `inline:socket` dialplan the list is different.
+
+        destination ?= call.data.variable_req_user
+
         ctx = {
           router: this
           cfg: @cfg
