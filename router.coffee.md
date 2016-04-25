@@ -36,7 +36,7 @@ Add the middleware for in-call use.
 
 The above works fine if we are executing inside the XML dialplan. However when executing from within an `inline:socket` dialplan the list is different.
 
-        destination ?= call.data.variable_req_user
+        destination ?= call.data.variable_sip_req_user
 
         ctx = {
           router: this
