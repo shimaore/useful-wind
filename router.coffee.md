@@ -62,6 +62,7 @@ The above works fine if we are executing inside the XML dialplan. However when e
           do (middleware) =>
             it = it
               .then ->
+                debug "middleware `#{middleware.name}`"
                 middleware.include.call ctx, ctx
               .catch (error) =>
                 debug "middleware `#{middleware.name}` failed", error.toString()
