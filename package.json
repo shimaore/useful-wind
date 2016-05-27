@@ -17,10 +17,10 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "coffee-script": "^1.10.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.5.3"
   },
   "dependencies": {
-    "bluebird": "^3.3.5",
+    "bluebird": "^3.4.0",
     "debug": "^2.2.0",
     "esl": "^5.2.2",
     "useful-wind-serialize": "^1.0.2"
