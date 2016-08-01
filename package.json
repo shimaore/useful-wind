@@ -12,7 +12,7 @@
     "test": "mocha"
   },
   "author": "Stéphane Alnet <stephane@shimaore.net> (http://stephane.shimaore.net/)",
-  "license": "Unlicense (http://unlicense.org/)",
+  "license": "Unlicense",
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
