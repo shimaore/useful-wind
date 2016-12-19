@@ -50,6 +50,19 @@ The above works fine if we are executing inside the XML dialplan. However when e
               call.data["variable_#{name}"]
             header: (name) ->
               call.data["variable_sip_h_#{name}"]
+          res:
+            set: (name,value) ->
+              if value?
+                call.action 'set', "#{name}=#{value}"
+              else
+                call.action 'unset', "#{name}"
+            export: (name,value) ->
+              if value?
+                call.action 'export', "#{name}=#{value}"
+              else
+                call.action 'export', "#{name}"
+            header: (name,value) ->
+              call.action 'export', "variable_sip_h_#{name}=#{value}"
           session: {}
           action: (name,args) ->
             call.command name, args
