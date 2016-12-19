@@ -53,16 +53,16 @@ The above works fine if we are executing inside the XML dialplan. However when e
           res:
             set: (name,value) ->
               if value?
-                call.action 'set', "#{name}=#{value}"
+                call.command 'set', "#{name}=#{value}"
               else
-                call.action 'unset', "#{name}"
+                call.command 'unset', "#{name}"
             export: (name,value) ->
               if value?
-                call.action 'export', "#{name}=#{value}"
+                call.command 'export', "#{name}=#{value}"
               else
-                call.action 'export', "#{name}"
+                call.command 'export', "#{name}"
             header: (name,value) ->
-              call.action 'export', "variable_sip_h_#{name}=#{value}"
+              call.command 'export', "variable_sip_h_#{name}=#{value}"
           session: {}
           action: (name,args) ->
             call.command name, args
