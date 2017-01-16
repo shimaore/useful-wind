@@ -96,4 +96,3 @@ Toolbox
     pkg = require './package.json'
     Promise = require 'bluebird'
     debug = (require 'debug') "#{pkg.name}:router"
-    assert = require 'assert'
