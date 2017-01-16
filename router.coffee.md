@@ -76,6 +76,7 @@ The above works fine if we are executing inside the XML dialplan. However when e
             it = it
               .then ->
                 debug "middleware `#{middleware.name}`"
+                ctx.__middleware_name = middleware.name ? '(unnamed middleware)'
                 middleware.include.call ctx, ctx
               .catch (error) =>
                 debug "middleware `#{middleware.name}` failed", error.toString()
