@@ -1,6 +1,6 @@
 {
   "name": "useful-wind",
-  "version": "7.3.1",
+  "version": "7.4.0",
   "description": "A Promise-friendly, middleware-based framework for FreeSwitch call-handling",
   "directories": {
     "test": "test"
