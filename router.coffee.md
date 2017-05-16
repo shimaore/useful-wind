@@ -78,7 +78,7 @@ The above works fine if we are executing inside the XML dialplan. However when e
           try
             yield middleware.include.call ctx, ctx
           catch error
-            debug "middleware `#{middleware.name}` failed", error.toString()
+            debug.dev "middleware `#{middleware.name}` failed", error.toString()
             null
 
         debug 'completed'
