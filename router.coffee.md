@@ -1,6 +1,8 @@
+    seem = require 'seem'
+
     module.exports = class UsefulWindRouter
       constructor: (@cfg = {}) ->
-        debug 'constructor cfg =', @cfg
+        debug 'constructor'
         @middlewares = []
         @session = {}
 
@@ -30,7 +32,7 @@ Add the middleware for in-call use.
         else
           debug "Middleware #{middleware.name}'s `include` must be a function", typeof middleware.include
 
-      route: (call) ->
+      route: seem (call) ->
         source = call.data['Channel-Caller-ID-Number']
         destination = call.data['Channel-Destination-Number']
 
@@ -70,29 +72,23 @@ The above works fine if we are executing inside the XML dialplan. However when e
         for own k,v of @session
           ctx.session[k] = v
 
-        it = Promise.resolve()
-        for middleware in @middlewares
-          do (middleware) =>
-            it = it
-              .then ->
-                debug "middleware `#{middleware.name}`"
-                ctx.__middleware_name = middleware.name ? '(unnamed middleware)'
-                middleware.include.call ctx, ctx
+        try
+          for middleware in @middlewares
+            debug "middleware `#{middleware.name}`"
+            ctx.__middleware_name = middleware.name ? '(unnamed middleware)'
+            yield middleware.include
+              .call ctx, ctx
               .catch (error) =>
                 debug "middleware `#{middleware.name}` failed", error.toString()
                 null
-
-        it
-        .catch (error) ->
+        catch error
           debug "route failure", error.toString()
-          null
-        .then ->
+        finally
           debug "completed."
-          ctx
+        ctx
 
 Toolbox
 -------
 
     pkg = require './package.json'
-    Promise = require 'bluebird'
-    debug = (require 'debug') "#{pkg.name}:router"
+    debug = (require 'tangible') "#{pkg.name}:router"

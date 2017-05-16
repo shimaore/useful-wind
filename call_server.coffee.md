@@ -1,6 +1,6 @@
     module.exports = class UsefulWindCallServer
       constructor: (@cfg) ->
-        debug 'constructor cfg =', @cfg
+        debug 'constructor'
         assert @cfg.use?, 'Missing cfg.use'
         @router = @cfg.router ? new UsefulWindRouter @cfg
         for m in @cfg.use
@@ -24,7 +24,7 @@
             reject exception
 
     pkg = require './package.json'
-    debug = (require 'debug') "#{pkg.name}:call_server"
+    debug = (require 'tangible') "#{pkg.name}:call_server"
     UsefulWindRouter = require './router'
     FS = require 'esl'
     assert = require 'assert'
