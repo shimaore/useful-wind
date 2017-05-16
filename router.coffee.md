@@ -72,19 +72,16 @@ The above works fine if we are executing inside the XML dialplan. However when e
         for own k,v of @session
           ctx.session[k] = v
 
-        try
-          for middleware in @middlewares
-            debug "middleware `#{middleware.name}`"
-            ctx.__middleware_name = middleware.name ? '(unnamed middleware)'
-            yield middleware.include
-              .call ctx, ctx
-              .catch (error) =>
-                debug "middleware `#{middleware.name}` failed", error.toString()
-                null
-        catch error
-          debug "route failure", error.toString()
-        finally
-          debug "completed."
+        for middleware in @middlewares
+          debug "middleware `#{middleware.name}`"
+          ctx.__middleware_name = middleware.name ? '(unnamed middleware)'
+          try
+            yield middleware.include.call ctx, ctx
+          catch error
+            debug "middleware `#{middleware.name}` failed", error.toString()
+            null
+
+        debug 'completed'
         ctx
 
 Toolbox
