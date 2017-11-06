@@ -5,6 +5,7 @@
         @router = @cfg.router ? new UsefulWindRouter @cfg
         for m in @cfg.use
           @router.use m
+        return
 
       listen: (port) ->
         router = @router
@@ -12,8 +13,10 @@
         .then =>
           @server = FS.server ->
             router.route this
+            return
           @server.listen port
           debug "#{pkg.name} #{pkg.version}: starting on port #{port}"
+          return
 
       stop: ->
         new Promise (resolve,reject) =>
