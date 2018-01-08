@@ -19,12 +19,13 @@
           return
 
       stop: ->
-        new Promise (resolve,reject) =>
-          try
-            @server.close resolve
-            delete @server
-          catch exception
-            reject exception
+        serialize @cfg, 'end'
+        .then =>
+          server = @server
+          delete @server
+          new Promise (resolve,reject) ->
+            server.close (err) -> if err then reject err else resolve()
+            return
 
     pkg = require './package.json'
     debug = (require 'tangible') "#{pkg.name}:call_server"
