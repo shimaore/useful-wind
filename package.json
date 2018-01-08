@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "prepublish": "coffee -c *.coffee.md",
+    "prepublishOnly": "npm install --only=dev && rm package-lock.json && coffee -c *.coffee.md",
     "postpublish": "rm *.js",
     "pretest": "npm install",
     "test": "mocha"
