@@ -19,6 +19,8 @@ At this point it should either be a function or an object.
 
         if typeof middleware is 'function'
           middleware = include:middleware
+        else
+          middleware = include:middleware.include, name:middleware.name
 
 At this point it should only be an object; the object must have an `include` function.
 
