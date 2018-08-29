@@ -26,12 +26,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shimaore/useful-wind.git"
+    "url": "https://gitlab.com/shimaore/useful-wind.git"
   },
-  "bugs": {
-    "url": "https://github.com/shimaore/useful-wind/issues"
-  },
-  "homepage": "https://github.com/shimaore/useful-wind",
+  "homepage": "https://gitlab.com/shimaore/useful-wind",
   "keywords": [
     "FreeSwitch",
     "Promises",
