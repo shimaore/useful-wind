@@ -1,5 +1,3 @@
-    seem = require 'seem'
-
     module.exports = class UsefulWindRouter
       constructor: (@cfg = {}) ->
         debug 'constructor'
@@ -34,7 +32,7 @@ Add the middleware for in-call use.
         else
           debug "Middleware #{middleware.name}'s `include` must be a function", typeof middleware.include
 
-      route: seem (call) ->
+      route: (call) ->
         source = call.data['Channel-Caller-ID-Number']
         destination = call.data['Channel-Destination-Number']
 
@@ -74,7 +72,7 @@ The above works fine if we are executing inside the XML dialplan. However when e
         for own k,v of @session
           ctx.session[k] = v
 
-        yield serialize.modules @middlewares, ctx, 'include'
+        await serialize.modules @middlewares, ctx, 'include'
 
         debug 'completed'
         ctx

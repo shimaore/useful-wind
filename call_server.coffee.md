@@ -12,7 +12,10 @@
         serialize @cfg, 'init'
         .then =>
           @server = FS.server ->
-            router.route this
+            router
+            .route this
+            .catch (error) ->
+              debug.dev "Router Failure", error.stack ? JSON.stringify error
             return
           @server.listen port
           debug "#{pkg.name} #{pkg.version}: starting on port #{port}"
