@@ -20,8 +20,8 @@
     "mocha": "^5.0.0"
   },
   "dependencies": {
-    "esl": "^9.0.1",
-    "tangible": "^2.0.0",
+    "esl": "^10.0.0",
+    "tangible": "^3.0.0",
     "useful-wind-serialize": "^1.6.1"
   },
   "repository": {
